@@ -1,0 +1,36 @@
+Thumbs.db
+*.obj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.sln.docstates
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+[Bb]in
+[Dd]ebug*/
+*.lib
+*.sbr
+obj/
+[Rr]elease*/
+_ReSharper*/
+[Tt]est[Rr]esult*
+IPC_release.opensdf
+IPC_release.sdf
+IPC_release/history/history.db
+IncludeFileDependencies1.dgml
+ClassDependencies1.dgml
+NamespaceDependencies1.dgml
+ipch/ipc_release-fa186ceb/ipc_release-85b6b3e8.ipch
+IPC_release/line - ����.bmp
+IPC_release/line - ����.bmp

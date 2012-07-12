@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="头文件\GUI">
+      <UniqueIdentifier>{e9cbef0e-726a-4e35-9e03-eb2ff94eb737}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\GUI">
+      <UniqueIdentifier>{e95ecf58-a89c-42c6-b913-7e5812f046db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\SQLite">
+      <UniqueIdentifier>{ef14ce9a-1696-4a27-a9c0-5d01eef766c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\SQLite">
+      <UniqueIdentifier>{c9d087e1-a5bf-4b53-bedd-6d4c86f3c86c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ADO">
+      <UniqueIdentifier>{8743f416-6c66-4adf-ad34-5a7573f63dc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ADO">
+      <UniqueIdentifier>{9f0c7025-1a07-4e83-bcdf-897f111ca5cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\DBCommon">
+      <UniqueIdentifier>{81948f9b-422e-4d5d-ba33-65ac13e7d7c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\DBCommon">
+      <UniqueIdentifier>{303802a7-6d6e-44eb-97ce-65af980f6c8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Controller">
+      <UniqueIdentifier>{014634d8-2a37-4754-8f52-410f02b8b1fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Controller">
+      <UniqueIdentifier>{1bd8828e-4533-4ab2-a9bf-56bb7e8ab732}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Proctol">
+      <UniqueIdentifier>{aeb451d5-a643-4c7e-a85e-357fa2288d47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Controller\CAN">
+      <UniqueIdentifier>{2fd94ac4-7e48-4d62-a0b3-8b51b8241f3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Controller\DB">
+      <UniqueIdentifier>{7969a932-88a5-46a1-af70-2e55a268bc99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Controller\Config">
+      <UniqueIdentifier>{eb741bb0-4502-4bbd-8d57-672a4b0f3799}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Controller\CAN">
+      <UniqueIdentifier>{53846a90-42cb-42f7-aee4-cee97f8c10fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Controller\DB">
+      <UniqueIdentifier>{290f57af-38a7-41d5-90f4-66bc3555d684}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Controller\Config">
+      <UniqueIdentifier>{08593295-abbc-4846-8359-ce5a2ea96dab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Proctol">
+      <UniqueIdentifier>{f55cc753-5e69-46db-92d2-e65e0b72702d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="res\file_view.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\file_view_hc.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\class_view.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\class_view_hc.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\fileview.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\fileview_hc.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\classview.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\classview_hc.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\explorer.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\explorer_hc.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\sort.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\sort_hc.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\menuimages.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\menuimages_hc.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\output_wnd.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\output_wnd_hc.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\buttons.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\filelarge.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\filesmall.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\main.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\writelarge.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\writesmall.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\ribbon.mfcribbon-ms">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\IPC_release.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\IPC_releaseDoc.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\IPC_release.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\Toolbar.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\Toolbar256.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\bitmap1.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\icon1.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\ico00001.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\bmp00001.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="line.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\bitmap2.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\bmp00002.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\bmp00003.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\bmp00004.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="SQLite_Demo.txt" />
+    <None Include="Debug\msado15.tli">
+      <Filter>源文件\ADO</Filter>
+    </None>
+    <None Include="Debug\msado15.tlh">
+      <Filter>头文件\ADO</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="IPC_release.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Monitor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NotifyClass.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogPipeline.h">
+      <Filter>头文件\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogMain.h">
+      <Filter>头文件\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogData.h">
+      <Filter>头文件\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogBasic.h">
+      <Filter>头文件\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IPC_releaseView.h">
+      <Filter>头文件\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IPC_releaseDoc.h">
+      <Filter>头文件\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>头文件\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputWnd.h">
+      <Filter>头文件\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticLED.h">
+      <Filter>头文件\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="StationListView.h">
+      <Filter>头文件\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="StationView.h">
+      <Filter>头文件\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleObjectPool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CppSQLite3.h">
+      <Filter>头文件\SQLite</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite3.h">
+      <Filter>头文件\SQLite</Filter>
+    </ClInclude>
+    <ClInclude Include="ADODatabase.h">
+      <Filter>头文件\ADO</Filter>
+    </ClInclude>
+    <ClInclude Include="StationManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DBTarget.h">
+      <Filter>头文件\DBCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="DBAdaptee.h">
+      <Filter>头文件\DBCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="Proctol.h">
+      <Filter>头文件\Proctol</Filter>
+    </ClInclude>
+    <ClInclude Include="CANCenter.h">
+      <Filter>头文件\Controller\CAN</Filter>
+    </ClInclude>
+    <ClInclude Include="DBCenter.h">
+      <Filter>头文件\Controller\DB</Filter>
+    </ClInclude>
+    <ClInclude Include="MConfig.h">
+      <Filter>头文件\Controller\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="CanBus2.0.h">
+      <Filter>头文件\Controller\CAN</Filter>
+    </ClInclude>
+    <ClInclude Include="can_msg_t.h">
+      <Filter>头文件\Controller\CAN</Filter>
+    </ClInclude>
+    <ClInclude Include="AdsCAN.h">
+      <Filter>头文件\Controller\CAN</Filter>
+    </ClInclude>
+    <ClInclude Include="Station.h">
+      <Filter>头文件\Controller\CAN</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterTools.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="IPC_release.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Monitor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogBasic.cpp">
+      <Filter>源文件\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogData.cpp">
+      <Filter>源文件\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogMain.cpp">
+      <Filter>源文件\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogPipeline.cpp">
+      <Filter>源文件\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="IPC_releaseDoc.cpp">
+      <Filter>源文件\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="IPC_releaseView.cpp">
+      <Filter>源文件\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>源文件\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputWnd.cpp">
+      <Filter>源文件\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticLED.cpp">
+      <Filter>源文件\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="StationListView.cpp">
+      <Filter>源文件\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="StationView.cpp">
+      <Filter>源文件\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleObjectPool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CppSQLite3.cpp">
+      <Filter>源文件\SQLite</Filter>
+    </ClCompile>
+    <ClCompile Include="DBAdaptee.cpp">
+      <Filter>源文件\DBCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="DBTarget.cpp">
+      <Filter>源文件\DBCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="CANCenter.cpp">
+      <Filter>源文件\Controller\CAN</Filter>
+    </ClCompile>
+    <ClCompile Include="DBCenter.cpp">
+      <Filter>源文件\Controller\DB</Filter>
+    </ClCompile>
+    <ClCompile Include="MConfig.cpp">
+      <Filter>源文件\Controller\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Proctol.cpp">
+      <Filter>源文件\Proctol</Filter>
+    </ClCompile>
+    <ClCompile Include="ADODatabase.cpp">
+      <Filter>源文件\ADO</Filter>
+    </ClCompile>
+    <ClCompile Include="StationManager.cpp">
+      <Filter>源文件\Controller\CAN</Filter>
+    </ClCompile>
+    <ClCompile Include="Station.cpp">
+      <Filter>源文件\Controller\CAN</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterTools.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="IPC_release.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
