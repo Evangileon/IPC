@@ -1,16 +1,4 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
-
-# Compiled Dynamic libraries
-*.so
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-
+<<<<<<< HEAD
 Thumbs.db
 *.obj
 *.exe
@@ -47,3 +35,17 @@ NamespaceDependencies1.dgml
 ipch/ipc_release-fa186ceb/ipc_release-85b6b3e8.ipch
 IPC_release/line - ����.bmp
 IPC_release/line - ����.bmp
+=======
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+>>>>>>> 0bb73d5c35befb61c28fabd6f68e1cff675c8292
