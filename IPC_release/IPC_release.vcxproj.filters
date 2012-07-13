@@ -250,9 +250,6 @@
     <ClInclude Include="sqlite3.h">
       <Filter>头文件\SQLite</Filter>
     </ClInclude>
-    <ClInclude Include="ADODatabase.h">
-      <Filter>头文件\ADO</Filter>
-    </ClInclude>
     <ClInclude Include="StationManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -288,6 +285,9 @@
     </ClInclude>
     <ClInclude Include="CharacterTools.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ADODatabase.h">
+      <Filter>头文件\Controller\DB</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

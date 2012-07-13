@@ -112,7 +112,7 @@ private:
 	CProctol m_Proctol;
 
 /****************************ÆäËû¸¨Öúº¯Êý***********************************/
-	void SplitString(CString str, wchar_t split,CStringArray& strGet);
+	void SplitString(CString str, TCHAR split,CStringArray& strGet);
 	int CharsToInt(char * str, int nStart, int nLength);
 	
 #ifdef _DEBUG

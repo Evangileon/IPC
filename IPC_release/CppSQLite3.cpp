@@ -140,19 +140,27 @@ void CppSQLite3Buffer::clear()
 {
 	if (mpBuf)
 	{
+#ifdef _Unicode
 		sqlite3_free(CT2CA(mpBuf));
+#else
+		sqlite3_free(mpBuf);
+#endif
 		mpBuf = 0;
 	}
 
 }
 
 
-char CppSQLite3Buffer::format(LPCTSTR szFormat, ...)
+LPCTSTR CppSQLite3Buffer::format(LPCTSTR szFormat, ...)
 {
 	clear();
 	va_list va;
 	va_start(va, szFormat);
+#ifdef _Unicode
 	mpBuf = sqlite3_vmprintf(CT2CA(szFormat), va);
+#else
+	mpBuf = sqlite3_vmprintf(szFormat, va);
+#endif
 	va_end(va);
 	return mpBuf;
 }
@@ -1321,11 +1329,16 @@ sqlite3_stmt* CppSQLite3DB::compile(LPCTSTR szSQL)
 
 	char* szError=0;
 	const char* szTail=0;
+	int nRet;
 	sqlite3_stmt* pVM;
 
+#ifdef _Unicode
 	char szU8_SQL[1024];
 	CCharacterTools::UniToUTF8((wchar_t*)szSQL, szU8_SQL);
-	int nRet = sqlite3_prepare(mpDB, szU8_SQL, -1, &pVM, &szTail);
+	nRet = sqlite3_prepare(mpDB, szU8_SQL, -1, &pVM, &szTail);
+#else
+	nRet = sqlite3_prepare(mpDB, szSQL, -1, &pVM, &szTail);
+#endif
 
 	if (nRet != SQLITE_OK)
 	{

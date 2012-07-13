@@ -89,7 +89,7 @@ BOOL CDialogData::OnInitDialog()
 	m_ListDB.InsertColumn(0, _T("ID"));
 	//m_ListDB.InsertColumn(1, _T("日期"));
 	//m_ListDB.InsertColumn(2, _T("时间"));
-	m_ListDB.InsertColumn(1, _T("字节0"));
+	m_ListDB.InsertColumn(1, const_cast<LPCTSTR>(_T("字节0")));
 	m_ListDB.InsertColumn(2, _T("字节1"));
 	m_ListDB.InsertColumn(3, _T("字节2"));
 	m_ListDB.InsertColumn(4, _T("字节3"));

@@ -24,7 +24,7 @@ int CCharacterTools::AnsiToUni(const char* szAnsi, wchar_t* wszUni)
 
 int CCharacterTools::UniToAnsi(wchar_t* wszUni, char* szAnsi)
 {
-	int ansiLen = ::WideCharToMultiByte(CP_ACP, NULL, (LPCTSTR)wszUni, wcslen(wszUni), NULL, 0, NULL, NULL);
+	int ansiLen = ::WideCharToMultiByte(CP_ACP, NULL, (LPCWSTR)wszUni, wcslen(wszUni), NULL, 0, NULL, NULL);
 	::WideCharToMultiByte(CP_ACP, NULL, wszUni, wcslen(wszUni), szAnsi, ansiLen, NULL, NULL);
 	szAnsi[ansiLen] = '\0';  //最后加上'\0'
 

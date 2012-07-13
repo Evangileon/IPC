@@ -89,7 +89,7 @@ CDBCenter::CDBCenter()
 				db->execDML(_T("insert into test_tbl (byte0, byte1, byte2, byte3, byte4, byte5, byte6, byte7) \
 							values('0xAA', '0xAA','0xAA','0xAA','0xAA','0xAA','0xAA','0xAA')"));	
 				db->execDML(_T("insert into test_tbl (byte0, byte1, byte2, byte3, byte4, byte5, byte6, byte7) \
-							values('0xAA', '0xAA','0xAA','0xAA','0xAA','0xAA','0xAA','0xAA')"));	
+							values('试验', '0xAA','0xAA','0xAA','0xAA','0xAA','0xAA','0xAA')"));	
 				strInfo += _T("打开db成功！\r\n");
 			}
 		}

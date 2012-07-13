@@ -636,7 +636,7 @@ void CCANCenter::Deliver(int nID, int nCmd, CString strParam)
 {
 	//分发函数
 	CStringArray strParams;
-	SplitString(strParam, _T(','), strParams);
+	SplitString(strParam, ',', strParams);
 	char num[8]; 
 	CString str0;
 	CString str1;
@@ -682,7 +682,7 @@ void CCANCenter::Deliver(int nID, int nCmd, CString strParam)
 	//this->NotifyCtrl(0, nID);
 }
 
-void CCANCenter::SplitString(CString str, wchar_t split,CStringArray& strGet)  
+void CCANCenter::SplitString(CString str, TCHAR split,CStringArray& strGet)  
 {  
 	//str为待分割的CString，split为分割符如：， ¦或空格 strGet为输出参数，你得到的字符串存放在strGet中
 	int pos = -1;
