@@ -182,9 +182,6 @@
       <Filter>资源文件</Filter>
     </None>
     <None Include="SQLite_Demo.txt" />
-    <None Include="Debug\msado15.tli">
-      <Filter>源文件\ADO</Filter>
-    </None>
     <None Include="Debug\msado15.tlh">
       <Filter>头文件\ADO</Filter>
     </None>
@@ -289,6 +286,9 @@
     <ClInclude Include="ADODatabase.h">
       <Filter>头文件\Controller\DB</Filter>
     </ClInclude>
+    <ClInclude Include="DialogDBSetting.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IPC_release.cpp">
@@ -367,6 +367,9 @@
       <Filter>源文件\Controller\CAN</Filter>
     </ClCompile>
     <ClCompile Include="CharacterTools.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogDBSetting.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

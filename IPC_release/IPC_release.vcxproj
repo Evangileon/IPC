@@ -67,8 +67,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>msdasc.lib;AdsCAN.lib;SQLite.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <DelayLoadDLLs>sqlite3.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalDependencies>msdasc.lib;AdsCAN.lib;SQLited.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
     </Link>
@@ -113,7 +113,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="Debug\msado15.tlh" />
-    <None Include="Debug\msado15.tli" />
     <None Include="line.bmp" />
     <None Include="ReadMe.txt" />
     <None Include="res\bitmap1.bmp" />
@@ -165,6 +164,7 @@
     <ClInclude Include="DBTarget.h" />
     <ClInclude Include="DialogBasic.h" />
     <ClInclude Include="DialogData.h" />
+    <ClInclude Include="DialogDBSetting.h" />
     <ClInclude Include="DialogMain.h" />
     <ClInclude Include="DialogPipeline.h" />
     <ClInclude Include="IPC_release.h" />
@@ -197,6 +197,7 @@
     <ClCompile Include="DBTarget.cpp" />
     <ClCompile Include="DialogBasic.cpp" />
     <ClCompile Include="DialogData.cpp" />
+    <ClCompile Include="DialogDBSetting.cpp" />
     <ClCompile Include="DialogMain.cpp" />
     <ClCompile Include="DialogPipeline.cpp" />
     <ClCompile Include="IPC_release.cpp" />

@@ -17,6 +17,7 @@
 #include "StationListView.h"
 #include "IPC_releaseView.h"
 #include "resource.h"
+#include "DialogDBSetting.h"
 
 //所有Ribbon控件消息响应函数映射到CMainFrame中
 class CMainFrame : public CFrameWndEx
@@ -87,6 +88,7 @@ public:
 	afx_msg void OnCheckSendRemote();
 	afx_msg void OnUpdateCheckSendRemote(CCmdUI *pCmdUI);
 	afx_msg void OnButtonSaveconfig();
+	afx_msg void OnButtonDbsetting();
 };
 
 

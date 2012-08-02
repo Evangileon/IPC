@@ -259,7 +259,7 @@ private:
 };
 
 
-class CppSQLite3DB : IDBTarget
+class CppSQLite3DB : public IDBTarget
 {
 public:
 	CppSQLite3DB();
@@ -307,15 +307,17 @@ private:
     sqlite3* mpDB;
     int mnBusyTimeoutMs;
 public:
-	CppSQLite3Query* ExcuteQuery(CString sql);
+	CppSQLite3Query* ExcuteQuery(LPCTSTR sql);
 	virtual BOOL DbEOF(void);
 	virtual void NextRow(void);
-	virtual BOOL Query(CString sql);
-	virtual BOOL Excute(CString sql);
-	virtual CString& GetFieldByString(CString field);
-	virtual BOOL Open(CString DbString);
+	virtual BOOL Query(LPCTSTR sql);
+	virtual BOOL Excute(LPCTSTR sql);
+	virtual LPCTSTR GetFieldByString(LPCTSTR field);
+	virtual LPCTSTR GetFieldByIndex(int index);
+	virtual BOOL Open(LPCTSTR DbString = _T(""), LPCTSTR UserID = _T(""), LPCTSTR Password = _T(""));
 	virtual BOOL Close(void);
 	virtual void Finalize(void);
+	virtual void Reset(void);
 };
 
 #endif

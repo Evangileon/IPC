@@ -11,7 +11,7 @@ IDBTarget::~IDBTarget(void)
 {
 }
 
-
+#if 0
 BOOL IDBTarget::DbEOF(void)
 {
 	return TRUE;
@@ -42,7 +42,7 @@ CString& IDBTarget::GetFieldByString(CString field)
 }
 
 
-BOOL IDBTarget::Open(CString DbString)
+BOOL IDBTarget::Open(CString DbString, CString UserID, CString Password)
 {
 	return FALSE;
 }
@@ -62,3 +62,10 @@ void IDBTarget::Reset(void)
 {
 
 }
+
+CString& IDBTarget::GetFieldByIndex(int index)
+{
+	//TODO: insert return statement here
+	return CString("");
+}
+#endif

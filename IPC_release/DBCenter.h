@@ -1,8 +1,8 @@
 #pragma once
 
 #include "CppSQLite3.h"
+#include "ADODatabase.h"
 #include "MConfig.h"
-#include <msado15.h>
 //#include <list>
 
 // CDBCenter 命令目标
@@ -21,10 +21,14 @@ public:
 #endif
 
 public:
-	CppSQLite3DB *db;
+	
+	IDBTarget *m_db;
+	CppSQLite3DB *m_SQLitedb;
+	CADODatabase *m_ADOdb;
 	//IDatabase* db;
 	CList<CString> m_DataQueue;
 	int MaxQueue;
+	
 
 //Singleton
 private:
@@ -39,8 +43,8 @@ private:
 
 /***********************数据库操作*********************************/
 public:
-	CppSQLite3Query* Query(CString szSQL);
-	CppSQLite3Query* QueryAll(void);
+	BOOL Query(CString szSQL);
+	BOOL QueryAll(void);
 	void WriteFmtMsg(CAN_MSG_T* msg);
 	int WriteSQL(CString& sql);
 	void Flush(void);

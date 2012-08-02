@@ -7,6 +7,7 @@
 #include "afxdialogex.h"
 #include "CppSQLite3.h"
 #include "DBCenter.h"
+#include "DBTarget.h"
 
 
 // CDialogData ¶Ô»°¿ò
@@ -123,45 +124,52 @@ void CDialogData::AdjustColumnWidth(void)
 void CDialogData::OnBnClickedButtonDbQueryAll()
 {
 	// TODO: ²âÊÔÊı¾İ¿â£¬ÇëĞŞ¸Ä
-	CppSQLite3Query* query = CDBCenter::Instance()->QueryAll();
+	if(CDBCenter::Instance()->QueryAll() == FALSE)
+	{
+		AfxMessageBox(_T("²éÑ¯Ê§°Ü£¡"));
+		return;
+	}
+
+	IDBTarget *tmpDB = CDBCenter::Instance()->m_db;
+	
 	int index = 0;
 
-	while (!query->eof())
+	while (!tmpDB->DbEOF())
 	{
 		m_ListDB.InsertItem(index, _T(""));
 
-		CString str0(query->fieldValue(0));
+		CString str0 = tmpDB->GetFieldByIndex(0);
 		m_ListDB.SetItemText(index, 0, str0);
 
-		CString str1(query->fieldValue(1));
+		CString str1((LPCTSTR)tmpDB->GetFieldByIndex(1));
 		m_ListDB.SetItemText(index, 1, str1);
 
-		CString str2(query->fieldValue(2));
+		CString str2((LPCTSTR)tmpDB->GetFieldByIndex(2));
 		m_ListDB.SetItemText(index, 2, str2);
 
-		CString str3(query->fieldValue(3));
+		CString str3((LPCTSTR)tmpDB->GetFieldByIndex(3));
 		m_ListDB.SetItemText(index, 3, str3);
 
-		CString str4(query->fieldValue(4));
+		CString str4((LPCTSTR)tmpDB->GetFieldByIndex(4));
 		m_ListDB.SetItemText(index, 4, str4);
 
-		CString str5(query->fieldValue(5));
+		CString str5((LPCTSTR)tmpDB->GetFieldByIndex(5));
 		m_ListDB.SetItemText(index, 5, str5);
 
-		CString str6(query->fieldValue(6));
+		CString str6((LPCTSTR)tmpDB->GetFieldByIndex(6));
 		m_ListDB.SetItemText(index, 6, str6);
 
-		CString str7(query->fieldValue(7));
+		CString str7((LPCTSTR)tmpDB->GetFieldByIndex(7));
 		m_ListDB.SetItemText(index, 7, str7);
 
-		CString str8(query->fieldValue(8));
+		CString str8((LPCTSTR)tmpDB->GetFieldByIndex(8));
 		m_ListDB.SetItemText(index, 8, str8);
 
 		index++;
-		query->nextRow();
+		tmpDB->NextRow();
 	}
 
-	delete query;
+	CDBCenter::Instance()->m_db->Reset();
 }
 
 

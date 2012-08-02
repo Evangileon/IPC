@@ -1,15 +1,15 @@
-// Õâ¶Î MFC Ê¾ÀıÔ´´úÂëÑİÊ¾ÈçºÎÊ¹ÓÃ MFC Microsoft Office Fluent ÓÃ»§½çÃæ 
-// (¡°Fluent UI¡±)¡£¸ÃÊ¾Àı½ö¹©²Î¿¼£¬
-// ÓÃÒÔ²¹³ä¡¶Microsoft »ù´¡Àà²Î¿¼¡·ºÍ 
-// MFC C++ ¿âÈí¼şËæ¸½µÄÏà¹Øµç×ÓÎÄµµ¡£
-// ¸´ÖÆ¡¢Ê¹ÓÃ»ò·Ö·¢ Fluent UI µÄĞí¿ÉÌõ¿îÊÇµ¥¶ÀÌá¹©µÄ¡£
-// ÈôÒªÁË½âÓĞ¹Ø Fluent UI Ğí¿É¼Æ»®µÄÏêÏ¸ĞÅÏ¢£¬Çë·ÃÎÊ  
-// http://msdn.microsoft.com/officeui¡£
+ï»¿// è¿™æ®µ MFC ç¤ºä¾‹æºä»£ç æ¼”ç¤ºå¦‚ä½•ä½¿ç”¨ MFC Microsoft Office Fluent ç”¨æˆ·ç•Œé¢ 
+// (â€œFluent UIâ€)ã€‚è¯¥ç¤ºä¾‹ä»…ä¾›å‚è€ƒï¼Œ
+// ç”¨ä»¥è¡¥å……ã€ŠMicrosoft åŸºç¡€ç±»å‚è€ƒã€‹å’Œ 
+// MFC C++ åº“è½¯ä»¶éšé™„çš„ç›¸å…³ç”µå­æ–‡æ¡£ã€‚
+// å¤åˆ¶ã€ä½¿ç”¨æˆ–åˆ†å‘ Fluent UI çš„è®¸å¯æ¡æ¬¾æ˜¯å•ç‹¬æä¾›çš„ã€‚
+// è‹¥è¦äº†è§£æœ‰å…³ Fluent UI è®¸å¯è®¡åˆ’çš„è¯¦ç»†ä¿¡æ¯ï¼Œè¯·è®¿é—®  
+// http://msdn.microsoft.com/officeuiã€‚
 //
-// °æÈ¨ËùÓĞ(C) Microsoft Corporation
-// ±£ÁôËùÓĞÈ¨Àû¡£
+// ç‰ˆæƒæ‰€æœ‰(C) Microsoft Corporation
+// ä¿ç•™æ‰€æœ‰æƒåˆ©ã€‚
 
-// MainFrm.cpp : CMainFrame ÀàµÄÊµÏÖ
+// MainFrm.cpp : CMainFrame ç±»çš„å®ç°
 //
 
 #include "stdafx.h"
@@ -43,13 +43,14 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
 	ON_COMMAND(ID_CHECK_SEND_REMOTE, &CMainFrame::OnCheckSendRemote)
 	ON_UPDATE_COMMAND_UI(ID_CHECK_SEND_REMOTE, &CMainFrame::OnUpdateCheckSendRemote)
 	ON_COMMAND(ID_BUTTON_SAVECONFIG, &CMainFrame::OnButtonSaveconfig)
+	ON_COMMAND(ID_BUTTON_DBSETTING, &CMainFrame::OnButtonDbsetting)
 END_MESSAGE_MAP()
 
-// CMainFrame ¹¹Ôì/Îö¹¹
+// CMainFrame æ„é€ /ææ„
 
 CMainFrame::CMainFrame()
 {
-	// TODO: ÔÚ´ËÌí¼Ó³ÉÔ±³õÊ¼»¯´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æˆå‘˜åˆå§‹åŒ–ä»£ç 
 	theApp.m_nAppLook = theApp.GetInt(_T("ApplicationLook"), ID_VIEW_APPLOOK_OFF_2007_BLACK);
 }
 
@@ -63,7 +64,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 
 	BOOL bNameValid;
-	// »ùÓÚ³Ö¾ÃÖµÉèÖÃÊÓ¾õ¹ÜÀíÆ÷ºÍÑùÊ½
+	// åŸºäºæŒä¹…å€¼è®¾ç½®è§†è§‰ç®¡ç†å™¨å’Œæ ·å¼
 	OnApplicationLook(theApp.m_nAppLook);
 
 	m_wndRibbonBar.Create(this);
@@ -71,8 +72,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	if (!m_wndStatusBar.Create(this))
 	{
-		TRACE0("Î´ÄÜ´´½¨×´Ì¬À¸\n");
-		return -1;      // Î´ÄÜ´´½¨
+		TRACE0("æœªèƒ½åˆ›å»ºçŠ¶æ€æ \n");
+		return -1;      // æœªèƒ½åˆ›å»º
 	}
 
 	CString strTitlePane1;
@@ -84,18 +85,18 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.AddElement(new CMFCRibbonStatusBarPane(ID_STATUSBAR_PANE1, strTitlePane1, TRUE), strTitlePane1);
 	m_wndStatusBar.AddExtendedElement(new CMFCRibbonStatusBarPane(ID_STATUSBAR_PANE2, strTitlePane2, TRUE), strTitlePane2);
 
-	// ÆôÓÃ Visual Studio 2005 ÑùÊ½Í£¿¿´°¿ÚĞĞÎª
+	// å¯ç”¨ Visual Studio 2005 æ ·å¼åœé çª—å£è¡Œä¸º
 	CDockingManager::SetDockingMode(DT_SMART);
-	// ÆôÓÃ Visual Studio 2005 ÑùÊ½Í£¿¿´°¿Ú×Ô¶¯Òş²ØĞĞÎª
+	// å¯ç”¨ Visual Studio 2005 æ ·å¼åœé çª—å£è‡ªåŠ¨éšè—è¡Œä¸º
 	EnableAutoHidePanes(CBRS_ALIGN_ANY);
 
-	// ¼ÓÔØ²Ëµ¥ÏîÍ¼Ïñ(²»ÔÚÈÎºÎ±ê×¼¹¤¾ßÀ¸ÉÏ):
+	// åŠ è½½èœå•é¡¹å›¾åƒ(ä¸åœ¨ä»»ä½•æ ‡å‡†å·¥å…·æ ä¸Š):
 	CMFCToolBar::AddToolBarForImageCollection(IDR_MENU_IMAGES, theApp.m_bHiColorIcons ? IDB_MENU_IMAGES_24 : 0);
 
-	// ´´½¨Í£¿¿´°¿Ú
+	// åˆ›å»ºåœé çª—å£
 	if (!CreateDockingWindows())
 	{
-		TRACE0("Î´ÄÜ´´½¨Í£¿¿´°¿Ú\n");
+		TRACE0("æœªèƒ½åˆ›å»ºåœé çª—å£\n");
 		return -1;
 	}
 
@@ -116,8 +117,8 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	if( !CFrameWndEx::PreCreateWindow(cs) )
 		return FALSE;
-	// TODO: ÔÚ´Ë´¦Í¨¹ıĞŞ¸Ä
-	//  CREATESTRUCT cs À´ĞŞ¸Ä´°¿ÚÀà»òÑùÊ½
+	// TODO: åœ¨æ­¤å¤„é€šè¿‡ä¿®æ”¹
+	//  CREATESTRUCT cs æ¥ä¿®æ”¹çª—å£ç±»æˆ–æ ·å¼
 
 	return TRUE;
 }
@@ -131,19 +132,19 @@ BOOL CMainFrame::CreateDockingWindows()
 	ASSERT(bNameValid);
 	if (!m_wndStationView.Create(strStationView, this, CRect(0, 0, 200, 200), TRUE, ID_VIEW_STATIONLIST, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT, AFX_CBRS_REGULAR_TABS, AFX_CBRS_RESIZE))
 	{
-		TRACE0("Î´ÄÜ´´½¨¡°ÎÄ¼şÊÓÍ¼¡±´°¿Ú\n");
-		return FALSE; // Î´ÄÜ´´½¨
+		TRACE0("æœªèƒ½åˆ›å»ºâ€œæ–‡ä»¶è§†å›¾â€çª—å£\n");
+		return FALSE; // æœªèƒ½åˆ›å»º
 	}
 
 
-	// ´´½¨Êä³ö´°¿Ú
+	// åˆ›å»ºè¾“å‡ºçª—å£
 	CString strOutputWnd;
 	bNameValid = strOutputWnd.LoadString(IDS_OUTPUT_WND);
 	ASSERT(bNameValid);
 	if (!m_wndOutput.Create(strOutputWnd, this, CRect(0, 0, 100, 100), TRUE, ID_VIEW_OUTPUTWND, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_BOTTOM | CBRS_FLOAT_MULTI, AFX_CBRS_REGULAR_TABS, AFX_CBRS_RESIZE))
 	{
-		TRACE0("Î´ÄÜ´´½¨Êä³ö´°¿Ú\n");
-		return FALSE; // Î´ÄÜ´´½¨
+		TRACE0("æœªèƒ½åˆ›å»ºè¾“å‡ºçª—å£\n");
+		return FALSE; // æœªèƒ½åˆ›å»º
 	}
 
 	SetDockingWindowIcons(theApp.m_bHiColorIcons);
@@ -158,7 +159,7 @@ void CMainFrame::SetDockingWindowIcons(BOOL bHiColorIcons)
 
 }
 
-// CMainFrame Õï¶Ï
+// CMainFrame è¯Šæ–­
 
 #ifdef _DEBUG
 void CMainFrame::AssertValid() const
@@ -173,7 +174,7 @@ void CMainFrame::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CMainFrame ÏûÏ¢´¦Àí³ÌĞò
+// CMainFrame æ¶ˆæ¯å¤„ç†ç¨‹åº
 
 void CMainFrame::OnApplicationLook(UINT id)
 {
@@ -267,20 +268,20 @@ void CMainFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 
 //void CMainFrame::OnClickTest(void)
 //{
-//	//AfxMessageBox(_T("²âÊÔ³É¹¦£¡"));
+//	//AfxMessageBox(_T("æµ‹è¯•æˆåŠŸï¼"));
 //}
 
 
 //void CMainFrame::OnButton2()
 //{
-//	// TODO: ÔÚ´ËÌí¼ÓÃüÁî´¦Àí³ÌĞò´úÂë
-//	//AfxMessageBox(_T("²âÊÔ³É¹¦£¡"));
+//	// TODO: åœ¨æ­¤æ·»åŠ å‘½ä»¤å¤„ç†ç¨‹åºä»£ç 
+//	//AfxMessageBox(_T("æµ‹è¯•æˆåŠŸï¼"));
 //}
 
 
 void CMainFrame::DoDataExchange(CDataExchange* pDX)
 {
-	// TODO: ÔÚ´ËÌí¼Ó×¨ÓÃ´úÂëºÍ/»òµ÷ÓÃ»ùÀà
+	// TODO: åœ¨æ­¤æ·»åŠ ä¸“ç”¨ä»£ç å’Œ/æˆ–è°ƒç”¨åŸºç±»
 
 	CFrameWndEx::DoDataExchange(pDX);
 }
@@ -293,7 +294,7 @@ BOOL CMainFrame::CreateTabWindow()
 
 void CMainFrame::OnButtonGlobal()
 {
-	// TODO: ÔÚ´ËÌí¼ÓÃüÁî´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ å‘½ä»¤å¤„ç†ç¨‹åºä»£ç 
 	CIPC_releaseView *pView=(CIPC_releaseView *)this->GetActiveView();
 	pView->PostMessage(NM_SWITCHDLG, 0, 0);
 
@@ -303,23 +304,23 @@ void CMainFrame::OnButtonGlobal()
 
 void CMainFrame::OnButtonOpencan()
 {
-	// TODO: ÔÚ´ËÌí¼ÓÃüÁî´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ å‘½ä»¤å¤„ç†ç¨‹åºä»£ç 
 	//AfxMessageBox(_T("ohhhhhhhh"));
-	theApp.Log(_T("ÕıÔÚ´ò¿ªCAN"));
+	theApp.Log(_T("æ­£åœ¨æ‰“å¼€CAN"));
 	//theApp.m_threadCANRead->Run();
 	if(CCANCenter::Instance()->IsPortOpen() == false)
 		CCANCenter::Instance()->Openport();
 	if(CCANCenter::Instance()->IsPortOpen() == true)
 	{
 		theApp.m_threadCANRead->ResumeThread();
-		theApp.Log(_T("´ò¿ªCAN³É¹¦"));
+		theApp.Log(_T("æ‰“å¼€CANæˆåŠŸ"));
 	}
 }
 
 
 void CMainFrame::OnButtonDataCheck()
 {
-	// TODO: ÔÚ´ËÌí¼ÓÃüÁî´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ å‘½ä»¤å¤„ç†ç¨‹åºä»£ç 
 	CIPC_releaseView *pView=(CIPC_releaseView *)this->GetActiveView();
 	pView->PostMessage(NM_SWITCHDLG, 2, 0);
 }
@@ -327,60 +328,68 @@ void CMainFrame::OnButtonDataCheck()
 
 void CMainFrame::OnCheckRecvStandard()
 {
-	// TODO: ÔÚ´ËÌí¼ÓÃüÁî´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ å‘½ä»¤å¤„ç†ç¨‹åºä»£ç 
 	CCANCenter::Instance()->m_ChkSffR = TRUE;
 }
 
 void CMainFrame::OnUpdateCheckRecvStandard(CCmdUI *pCmdUI)
 {
-	// TODO: ÔÚ´ËÌí¼ÓÃüÁî¸üĞÂÓÃ»§½çÃæ´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ å‘½ä»¤æ›´æ–°ç”¨æˆ·ç•Œé¢å¤„ç†ç¨‹åºä»£ç 
 	pCmdUI->SetCheck(CCANCenter::Instance()->m_ChkSffR);
 }
 
 void CMainFrame::OnCheckRecvRemote()
 {
-	// TODO: ÔÚ´ËÌí¼ÓÃüÁî´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ å‘½ä»¤å¤„ç†ç¨‹åºä»£ç 
 	CCANCenter::Instance()->m_ChkSffR = FALSE;
 }
 
 
 void CMainFrame::OnUpdateCheckRecvRemote(CCmdUI *pCmdUI)
 {
-	// TODO: ÔÚ´ËÌí¼ÓÃüÁî¸üĞÂÓÃ»§½çÃæ´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ å‘½ä»¤æ›´æ–°ç”¨æˆ·ç•Œé¢å¤„ç†ç¨‹åºä»£ç 
 	pCmdUI->SetCheck(!(CCANCenter::Instance()->m_ChkSffR));
 }
 
 
 void CMainFrame::OnCheckSendStandard()
 {
-	// TODO: ÔÚ´ËÌí¼ÓÃüÁî´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ å‘½ä»¤å¤„ç†ç¨‹åºä»£ç 
 	CCANCenter::Instance()->m_ChkSffS = TRUE;
 }
 
 
 void CMainFrame::OnUpdateCheckSendStandard(CCmdUI *pCmdUI)
 {
-	// TODO: ÔÚ´ËÌí¼ÓÃüÁî¸üĞÂÓÃ»§½çÃæ´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ å‘½ä»¤æ›´æ–°ç”¨æˆ·ç•Œé¢å¤„ç†ç¨‹åºä»£ç 
 	pCmdUI->SetCheck(CCANCenter::Instance()->m_ChkSffS);
 }
 
 
 void CMainFrame::OnCheckSendRemote()
 {
-	// TODO: ÔÚ´ËÌí¼ÓÃüÁî´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ å‘½ä»¤å¤„ç†ç¨‹åºä»£ç 
 	CCANCenter::Instance()->m_ChkSffS = FALSE;
 }
 
 
 void CMainFrame::OnUpdateCheckSendRemote(CCmdUI *pCmdUI)
 {
-	// TODO: ÔÚ´ËÌí¼ÓÃüÁî¸üĞÂÓÃ»§½çÃæ´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ å‘½ä»¤æ›´æ–°ç”¨æˆ·ç•Œé¢å¤„ç†ç¨‹åºä»£ç 
 	pCmdUI->SetCheck(!(CCANCenter::Instance()->m_ChkSffS));
 }
 
 
 void CMainFrame::OnButtonSaveconfig()
 {
-	// TODO: ÔÚ´ËÌí¼ÓÃüÁî´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ å‘½ä»¤å¤„ç†ç¨‹åºä»£ç 
 	CMConfig::Instance()->Save();
+}
+
+
+void CMainFrame::OnButtonDbsetting()
+{
+	// TODO: Ã”ÃšÂ´Ã‹ÃŒÃ­Â¼Ã“ÃƒÃ¼ÃÃ®Â´Â¦Ã€Ã­Â³ÃŒÃÃ²Â´ÃºÃ‚Ã«
+	CDialogDBSetting dialogDBSetting;
+	dialogDBSetting.DoModal();
 }

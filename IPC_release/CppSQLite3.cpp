@@ -376,14 +376,15 @@ LPCTSTR CppSQLite3Query::fieldValue(int nField)
 								DONT_DELETE_MSG);
 	}
 
-	return CA2CT((const char*)sqlite3_column_text(mpVM, nField));
+	LPCTSTR tmp = (const char *)sqlite3_column_text(mpVM, nField);
+	return tmp;
 }
 
 
 LPCTSTR CppSQLite3Query::fieldValue(LPCTSTR szField)
 {
 	int nField = fieldIndex(szField);
-	return CA2CT((const char*)sqlite3_column_text(mpVM, nField));
+	return (const char *)sqlite3_column_text(mpVM, nField);
 }
 
 
@@ -435,7 +436,7 @@ LPCTSTR CppSQLite3Query::getStringField(int nField, LPCTSTR szNullValue/*=""*/)
 	}
 	else
 	{
-		return CA2CT((const char*)sqlite3_column_text(mpVM, nField));
+		return (const char*)sqlite3_column_text(mpVM, nField);
 	}
 }
 
@@ -459,7 +460,7 @@ LPCTSTR CppSQLite3Query::getBlobField(int nField, int& nLen)
 	}
 
 	nLen = sqlite3_column_bytes(mpVM, nField);
-	return CA2CT((const char *)sqlite3_column_blob(mpVM, nField));
+	return (const char *)sqlite3_column_blob(mpVM, nField);
 }
 
 
@@ -518,7 +519,7 @@ LPCTSTR CppSQLite3Query::fieldName(int nCol)
 								DONT_DELETE_MSG);
 	}
 
-	return CA2CT(sqlite3_column_name(mpVM, nCol));
+	return sqlite3_column_name(mpVM, nCol);
 }
 
 
@@ -533,7 +534,7 @@ LPCTSTR CppSQLite3Query::fieldDeclType(int nCol)
 								DONT_DELETE_MSG);
 	}
 
-	return CA2CT(sqlite3_column_decltype(mpVM, nCol));
+	return sqlite3_column_decltype(mpVM, nCol);
 }
 
 
@@ -1020,7 +1021,7 @@ void CppSQLite3Statement::bind(int nParam, LPCTSTR blobValue, int nLen)
 {
 	checkVM();
 	int nRes = sqlite3_bind_blob(mpVM, nParam,
-								CT2CA(blobValue), nLen, SQLITE_TRANSIENT);
+								blobValue, nLen, SQLITE_TRANSIENT);
 
 	if (nRes != SQLITE_OK)
 	{
@@ -1104,6 +1105,7 @@ void CppSQLite3Statement::checkVM()
 CppSQLite3DB::CppSQLite3DB()
 {
 	mpDB = 0;
+	mpQuery = 0;
 	mnBusyTimeoutMs = 60000; // 60 seconds
 }
 
@@ -1111,19 +1113,21 @@ CppSQLite3DB::CppSQLite3DB()
 CppSQLite3DB::CppSQLite3DB(const CppSQLite3DB& db)
 {
 	mpDB = db.mpDB;
+	mpQuery = db.mpQuery;
 	mnBusyTimeoutMs = 60000; // 60 seconds
 }
 
 
 CppSQLite3DB::~CppSQLite3DB()
 {
-	close();
+	Close();
 }
 
 
 CppSQLite3DB& CppSQLite3DB::operator=(const CppSQLite3DB& db)
 {
 	mpDB = db.mpDB;
+	mpQuery = db.mpQuery;
 	mnBusyTimeoutMs = 60000; // 60 seconds
 	return *this;
 }
@@ -1131,7 +1135,7 @@ CppSQLite3DB& CppSQLite3DB::operator=(const CppSQLite3DB& db)
 
 void CppSQLite3DB::open(LPCTSTR szFile)
 {
-	int nRet = sqlite3_open(CT2CA(szFile), &mpDB);
+	int nRet = sqlite3_open(szFile, &mpDB);
 
 	if (nRet != SQLITE_OK)
 	{
@@ -1207,7 +1211,7 @@ bool CppSQLite3DB::tableExists(LPCTSTR szTable)
 {
 	CString temp = _T("select count(*) from sqlite_master where type='table' and name='%s'");
 	temp = temp + szTable;
-	int nRet = execScalar(temp.GetBuffer());
+	int nRet = execScalar(temp);
 	return (nRet > 0);
 }
 
@@ -1217,8 +1221,13 @@ int CppSQLite3DB::execDML(LPCTSTR szSQL)
 	checkDB();
 
 	char* szError=0;
+	int nRet;
 
-	int nRet = sqlite3_exec(mpDB, CT2CA(szSQL), 0, 0, &szError);
+#ifdef _Unicode
+	nRet = sqlite3_exec(mpDB, CT2CA(szSQL), 0, 0, &szError);
+#else
+	nRet = sqlite3_exec(mpDB, szSQL, 0, 0, &szError);
+#endif
 
 	if (nRet == SQLITE_OK)
 	{
@@ -1234,6 +1243,7 @@ int CppSQLite3DB::execDML(LPCTSTR szSQL)
 CppSQLite3Query* CppSQLite3DB::execQuery(LPCTSTR szSQL)
 {
 	checkDB();
+	Reset();
 
 	sqlite3_stmt* pVM = compile(szSQL);
 
@@ -1350,7 +1360,8 @@ sqlite3_stmt* CppSQLite3DB::compile(LPCTSTR szSQL)
 
 BOOL CppSQLite3DB::DbEOF(void)
 {
-	return this->mpQuery->eof();
+	BOOL tmp = this->mpQuery->eof();
+	return tmp;
 }
 
 void CppSQLite3DB::NextRow(void)
@@ -1358,7 +1369,7 @@ void CppSQLite3DB::NextRow(void)
 	this->mpQuery->nextRow();
 }
 
-BOOL CppSQLite3DB::Query(CString sql)
+BOOL CppSQLite3DB::Query(LPCTSTR sql)
 {
 	if(mpQuery != 0)
 	{
@@ -1372,30 +1383,52 @@ BOOL CppSQLite3DB::Query(CString sql)
 	return TRUE;
 }
 
-BOOL CppSQLite3DB::Excute(CString sql)
+BOOL CppSQLite3DB::Excute(LPCTSTR sql)
 {
-	return this->execDML(sql.GetBuffer());
+	return this->execDML(sql);
 }
 
-CString& CppSQLite3DB::GetFieldByString(CString field)
+LPCTSTR CppSQLite3DB::GetFieldByString(LPCTSTR field)
 {
-	return CString(this->mpQuery->fieldValue(this->mpQuery->fieldIndex(field)));
+	return this->mpQuery->fieldValue(this->mpQuery->fieldIndex(field));
 }
 
-BOOL CppSQLite3DB::Open(CString DbString)
+LPCTSTR CppSQLite3DB::GetFieldByIndex(int index)
 {
-	this->open(DbString.GetBuffer());
+	return this->mpQuery->fieldValue(index);
+}
+
+BOOL CppSQLite3DB::Open(LPCTSTR DbString, LPCTSTR UserID, LPCTSTR Password)
+{
+	//默认history.db
+
+	this->open(DbString);
 	return TRUE;
 }
 
 BOOL CppSQLite3DB::Close(void)
 {
+	this->Finalize();
 	this->close();
 	return TRUE;
 }
 
 void CppSQLite3DB::Finalize(void)
 {
+	if(mpQuery != 0)
+	{
+		delete mpQuery;
+		mpQuery = 0;
+	}
+}
+
+void CppSQLite3DB::Reset(void)
+{
+	if(mpQuery != 0)
+	{
+		delete mpQuery;
+		mpQuery = 0;
+	}
 }
 
 
@@ -1595,9 +1628,9 @@ int sqlite3_decode_binary(const unsigned char *in, unsigned char *out){
 }
 
 
-CppSQLite3Query* CppSQLite3DB::ExcuteQuery(CString sql)
+CppSQLite3Query* CppSQLite3DB::ExcuteQuery(LPCTSTR sql)
 {
 	//this->execQuery(W2A(sql.GetBuffer()));
-	return this->execQuery(sql.GetBuffer());//需要修改
+	return this->execQuery(sql);//需要修改
 }
 

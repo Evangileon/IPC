@@ -12,16 +12,17 @@ CADODatabase::~CADODatabase(void)
 	m_pConnection->Close();
 	m_pConnection.Release();
 	m_pRecordset->Close();
+	m_pRecordset.Release();
 }
 
 
-BOOL CADODatabase::Open(CString DbString)
+BOOL CADODatabase::Open(LPCTSTR DbString, LPCTSTR UserID, LPCTSTR Password)
 {
-	return OpenConnection(DbString);
+	return OpenConnection(DbString, UserID, Password);
 }
 
 
-BOOL CADODatabase::OpenConnection(CString strConnection)
+BOOL CADODatabase::OpenConnection(CString strConnection, CString UserID, CString Password)
 {
 	HRESULT hr = ::CoInitialize(NULL);
 	if (!SUCCEEDED(hr)) // 初始化失败
@@ -31,6 +32,8 @@ BOOL CADODatabase::OpenConnection(CString strConnection)
 	}
 
 	_bstr_t strConnect(strConnection);
+	_bstr_t strUserID(UserID);
+	_bstr_t strPassword(Password);
 
 	try
 	{
@@ -40,7 +43,7 @@ BOOL CADODatabase::OpenConnection(CString strConnection)
 		if (SUCCEEDED(hr))
 		{
 			// 连接数据库
-			if (SUCCEEDED(m_pConnection->Open(strConnect, "", "", adModeUnknown)))
+			if (SUCCEEDED(m_pConnection->Open(strConnect, strUserID, strPassword, adModeReadWrite)))
 			{
 				return TRUE;
 			}
@@ -100,7 +103,7 @@ _RecordsetPtr CADODatabase::Select(CString sql)
 }
 
 
-BOOL CADODatabase::Excute(CString sql)
+BOOL CADODatabase::Excute(LPCTSTR sql)
 {
 	_bstr_t CommandText(sql);
 	_variant_t RecordsAffected;
@@ -109,7 +112,7 @@ BOOL CADODatabase::Excute(CString sql)
 }
 
 
-BOOL CADODatabase::Query(CString sql)
+BOOL CADODatabase::Query(LPCTSTR sql)
 {
 	return FALSE;
 }
@@ -128,11 +131,20 @@ void CADODatabase::NextRow(void)
 }
 
 
-CString& CADODatabase::GetFieldByString(CString field)
+LPCTSTR CADODatabase::GetFieldByString(LPCTSTR field)
 {
 	//TODO: insert return statement here
 	_bstr_t FieldText(field);
 	CString temp = m_pRecordset->GetCollect(FieldText);
+	return temp;
+}
+
+LPCTSTR CADODatabase::GetFieldByIndex(int index)
+{
+	//TODO: insert return statement here
+	//_bstr_t FieldText(field);
+	//CString temp = m_pRecordset->GetCollect(FieldText);
+	CString temp = m_pRecordset->GetCollect(index);
 	return temp;
 }
 

@@ -22,6 +22,7 @@ CMConfig::CMConfig(void)
 	StationNBR = (StationNBR > 0) ? StationNBR : 19;
 	m_bNativeDB = GetPrivateProfileInt(_T("DatabaseConfig"), _T("DBServer"), TRUE, FileName);
 	m_bNativeDB = !(!m_bNativeDB);
+	m_bServerDB = !m_bNativeDB;
 
 	m_bReal = TRUE;
 	m_bVirtue = FALSE;

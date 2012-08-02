@@ -26,6 +26,11 @@ public:
 	BOOL m_bReal;
 	BOOL m_bVirtue;
 	BOOL m_bNativeDB;
+	BOOL m_bServerDB;
+	CString m_szSQLServer_Name;
+	CString m_szSQLServer_IP;
+	CString m_szSQLServer_Pwd;
+	CString m_szSQLServer_Usr;
 
 private:
 	void Initialize();
