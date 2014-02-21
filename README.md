@@ -1,4 +1,4 @@
 IPC
 ===
 
-工控机软件源代码管理
+Source code for Industrial Process Controller
